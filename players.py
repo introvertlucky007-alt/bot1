@@ -1,0 +1,353 @@
+price_by_ovr = {}
+
+# 75–80
+price = 10000
+for ovr in range(75,81):
+    price_by_ovr[ovr] = int(price)
+    price *= 1.5
+
+# 81–85
+price = 75000
+for ovr in range(81,86):
+    price = price + (price*0.25) + 10000
+    price_by_ovr[ovr] = int(price)
+
+# 86–90
+price = price_by_ovr[85] + 50000
+for ovr in range(86,91):
+    price_by_ovr[ovr] = int(price)
+    price = price + (price*0.25)
+
+# 91–94
+price = price_by_ovr[90] + 300000
+for ovr in range(91,95):
+    price_by_ovr[ovr] = int(price)
+    price += 200000
+
+# 95
+price_by_ovr[95] = price_by_ovr[94] + 450000
+
+# 96–99
+for ovr in range(96, 100):
+    price_by_ovr[ovr] = price_by_ovr[ovr - 1] + 600000
+
+
+def get_price_by_ovr(ovr, category=None):
+    try:
+        ovr_key = int(ovr)
+    except Exception:
+        return 0
+    price = price_by_ovr.get(ovr_key, 0)
+    if str(category or "").upper() == "S":
+        price += 200000
+    return price
+
+players = {
+"virat_kohli":{"name":"Virat Kohli","role":"Batter","bat_ovr":95,"bowl_ovr":35,"ovr":95, "price": "", "country": "IND", "type": "fast_med", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"joe_root":{"name":"Joe Root","role":"Batter","bat_ovr":95,"bowl_ovr":58,"ovr":95, "price": "", "country": "ENG", "type": "off", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"rohit_sharma":{"name":"Rohit Sharma","role":"Batter","bat_ovr":94,"bowl_ovr":42,"ovr":94, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"steve_smith":{"name":"Steve Smith","role":"Batter","bat_ovr":93,"bowl_ovr":47,"ovr":93, "price": "", "country": "AUS", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"shubman_gill":{"name":"Shubman Gill","role":"Batter","bat_ovr":90,"bowl_ovr":31,"ovr":89, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"travis_head":{"name":"Travis Head","role":"Batter","bat_ovr":93,"bowl_ovr":58,"ovr":92, "price": "", "country": "AUS", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"kane_williamson":{"name":"Kane Williamson","role":"Batter","bat_ovr":92,"bowl_ovr":36,"ovr":92, "price": "", "country": "NZ", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"babar_azam":{"name":"Babar Azam","role":"Batter","bat_ovr":90,"bowl_ovr":32,"ovr":90, "price": "", "country": "PK", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"yashasvi_jaiswal":{"name":"Yashasvi Jaiswal","role":"Batter","bat_ovr":90,"bowl_ovr":33,"ovr":90, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"mitchell_marsh":{"name":"Mitchell Marsh","role":"Batter","bat_ovr":89,"bowl_ovr":68,"ovr":89, "price": "", "country": "AUS", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"marmus_labuschagne":{"name":"M Labuschagne","role":"Batter","bat_ovr":88,"bowl_ovr":65,"ovr":88, "price": "", "country": "AUS", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"abhishek_sharma":{"name":"Abhishek Sharma","role":"Batter","bat_ovr":88,"bowl_ovr":61,"ovr":87, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"suryakumar_yadav":{"name":"Suryakumar Yadav","role":"Batter","bat_ovr":89,"bowl_ovr":40,"ovr":89, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"aiden_markram":{"name":"Aiden Markram","role":"Batter","bat_ovr":89,"bowl_ovr":69,"ovr":89, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"harry_brook":{"name":"Harry Brook","role":"Batter","bat_ovr":89,"bowl_ovr":40,"ovr":89, "price": "", "country": "ENG", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"daryl_mitchell":{"name":"Daryl Mitchell","role":"Batter","bat_ovr":87,"bowl_ovr":62,"ovr":87, "price": "", "country": "NZ", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"dewald_brevis":{"name":"Dewald Brevis","role":"Batter","bat_ovr":83,"bowl_ovr":49,"ovr":83, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"shimron_hetmyer":{"name":"Shimron Hetmyer","role":"Batter","bat_ovr":87,"bowl_ovr":37,"ovr":86, "price": "", "country": "WI", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"pathum_nissanka":{"name":"Pathum Nissanka","role":"Batter","bat_ovr":86,"bowl_ovr":30,"ovr":86, "price": "", "country": "SL", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"jason_roy":{"name":"Jason Roy","role":"Batter","bat_ovr":85,"bowl_ovr":30,"ovr":85, "price": "", "country": "ENG", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"tim_david":{"name":"Tim David","role":"Batter","bat_ovr":85,"bowl_ovr":40,"ovr":85, "price": "", "country": "AUS", "type": "", "bowl_trait": "", "bat_trait": "Finisher", "category": "N"},
+"henry_nicholls":{"name":"Henry Nicholls","role":"Batter","bat_ovr":84,"bowl_ovr":32,"ovr":85, "price": "", "country": "NZ", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"ruturaj_gaikwad":{"name":"Ruturaj Gaikwad","role":"Batter","bat_ovr":84,"bowl_ovr":30,"ovr":84, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"ajinkya_rahane":{"name":"Ajinkya Rahane","role":"Batter","bat_ovr":84,"bowl_ovr":29,"ovr":84, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"evin_lewis":{"name":"Evin Lewis","role":"Batter","bat_ovr":84,"bowl_ovr":30,"ovr":84, "price": "", "country": "WI", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"paul_stirling":{"name":"Paul Stirling","role":"Batter","bat_ovr":84,"bowl_ovr":38,"ovr":84, "price": "", "country": "IRE", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"mayank_agarwal":{"name":"Mayank Agarwal","role":"Batter","bat_ovr":84,"bowl_ovr":27,"ovr":84, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"imam_ul_haq":{"name":"Imam-ul-Haq","role":"Batter","bat_ovr":84,"bowl_ovr":30,"ovr":84, "price": "", "country": "PAK", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"tilak_varma":{"name":"Tilak Varma","role":"Batter","bat_ovr":84,"bowl_ovr":58,"ovr":84, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"sherfane_rutherford":{"name":"S Rutherford","role":"Batter","bat_ovr":84,"bowl_ovr":60,"ovr":84, "price": "", "country": "WI", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"sahibzada_farhan":{"name":"Sahibzada Farhan","role":"Batter","bat_ovr":84,"bowl_ovr":30,"ovr":84, "price": "", "country": "PAK", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"rinku_singh":{"name":"Rinku Singh","role":"Batter","bat_ovr":83,"bowl_ovr":50,"ovr":83, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Finisher", "category": "N"},
+"manish_pandey":{"name":"Manish Pandey","role":"Batter","bat_ovr":83,"bowl_ovr":30,"ovr":83, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"rovman_powell":{"name":"Rovman Powell","role":"Batter","bat_ovr":83,"bowl_ovr":40,"ovr":83, "price": "", "country": "WI", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"rilee_rossouw":{"name":"Rilee Rossouw","role":"Batter","bat_ovr":83,"bowl_ovr":40,"ovr":83, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"hashmatullah_shahidi":{"name":"H Shahidi","role":"Batter","bat_ovr":83,"bowl_ovr":37,"ovr":83, "price": "", "country": "AFG", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"najibullah_zadran":{"name":"N Zadran","role":"Batter","bat_ovr":79,"bowl_ovr":21,"ovr":79, "price": "", "country": "AFG", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"shamarh_brooks":{"name":"Shamarh Brooks","role":"Batter","bat_ovr":79,"bowl_ovr":32,"ovr":81, "price": "", "country": "WI", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"abhinav_manohar":{"name":"Abhinav Manohar","role":"Batter","bat_ovr":78,"bowl_ovr":49,"ovr":77, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Finisher", "category": "N"},
+"virat_singh":{"name":"Virat Singh","role":"Batter","bat_ovr":77,"bowl_ovr":28,"ovr":77, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"priyam_garg":{"name":"Priyam Garg","role":"Batter","bat_ovr":76,"bowl_ovr":32,"ovr":76, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"ashwin_hebbar":{"name":"Ashwin Hebbar","role":"Batter","bat_ovr":75,"bowl_ovr":34,"ovr":75, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"anuj_rawat":{"name":"Anuj Rawat","role":"Batter","bat_ovr":75,"bowl_ovr":30,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "", "category": "N"},
+"angkrish_raghuvanshi":{"name":"A Raghuvanshi","role":"Batter","bat_ovr":78,"bowl_ovr":39,"ovr":78,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"paras_dogra":{"name":"Paras Dogra","role":"Batter","bat_ovr":76,"bowl_ovr":32,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"ankit_bawne":{"name":"Ankit Bawne","role":"Batter","bat_ovr":76,"bowl_ovr":33,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"rajat_patil":{"name":"Rajat Patil","role":"Batter","bat_ovr":75,"bowl_ovr":31,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"a_easwaran":{"name":"A Easwaran","role":"Batter","bat_ovr":76,"bowl_ovr":30,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"ritwik_roy_chowdhury":{"name":"Ritwik Chowdhury","role":"Batter","bat_ovr":75,"bowl_ovr":30,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"subhranshu_senapati":{"name":"S Senapati","role":"Batter","bat_ovr":75,"bowl_ovr":34,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"salman_agha":{"name":"Salman Agha","role":"Batter","bat_ovr":84,"bowl_ovr":68,"ovr":84,"price":"", "country": "PAK", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"devdutt_padikkal":{"name":"Devdutt Padikkal","role":"Batter","bat_ovr":81,"bowl_ovr":49,"ovr":80,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"aniket_verma":{"name":"Aniket Verma","role":"Batter","bat_ovr":80,"bowl_ovr":48,"ovr":79,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"rajat_patidar":{"name":"Rajat Patidar","role":"Batter","bat_ovr":81,"bowl_ovr":49,"ovr":81,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"vaibhav_sooryavanshi":{"name":"V Sooryavanshi","role":"Batter","bat_ovr":82,"bowl_ovr":45,"ovr":82,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"sarfaraz_khan":{"name":"Sarfaraz Khan","role":"Batter","bat_ovr":81,"bowl_ovr":45,"ovr":81,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"sai_sudharshan":{"name":"Sai Sudharshan","role":"Batter","bat_ovr":82,"bowl_ovr":58,"ovr":81, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"rahul_tewatia":{"name":"Rahul Tewatia","role":"Batter","bat_ovr":80,"bowl_ovr":62,"ovr":81, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Finisher", "category": "N"},
+"shahrukh_khan":{"name":"Shahrukh Khan","role":"Batter","bat_ovr":78,"bowl_ovr":58,"ovr":78, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"abdul_samad":{"name":"Abdul Samad","role":"Batter","bat_ovr":79,"bowl_ovr":42,"ovr":80, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Finisher", "category": "N"},
+"nitish_rana":{"name":"Nitish Rana","role":"Batter","bat_ovr":82,"bowl_ovr":52,"ovr":82, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"sameer_rizvi":{"name":"Sameer Rizvi","role":"Batter","bat_ovr":78,"bowl_ovr":42,"ovr":78, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"pieter_malan":{"name":"Pieter Malan","role":"Batter","bat_ovr":82,"bowl_ovr":42,"ovr":82, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"janneman_malan":{"name":"Janneman Malan","role":"Batter","bat_ovr":82,"bowl_ovr":42,"ovr":82, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"ayush_mhatre":{"name":"Ayush Mhatre","role":"Batter","bat_ovr":78,"bowl_ovr":42,"ovr":78, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"priyansh_arya":{"name":"Priyansh Arya","role":"Batter","bat_ovr":78,"bowl_ovr":37,"ovr":79, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"nehal_wadhera":{"name":"Nehal Wadhera","role":"Batter","bat_ovr":77,"bowl_ovr":49,"ovr":77, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"shashank_singh":{"name":"Shashank Singh","role":"Batter","bat_ovr":81,"bowl_ovr":63,"ovr":80, "price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Part time", "bat_trait": "Finisher", "category": "N"},
+"shreyas_iyer":{"name":"Shreyas Iyer","role":"Batter","bat_ovr":87,"bowl_ovr":53,"ovr":86, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"david_miller":{"name":"David Miller","role":"Batter","bat_ovr":87,"bowl_ovr":40,"ovr":88, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"naman_dhir":{"name":"Naman Dhir","role":"Batter","bat_ovr":78,"bowl_ovr":45,"ovr":77, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Finisher", "category": "N"},
+"ayush_badoni":{"name":"Ayush Badoni","role":"Batter","bat_ovr":78,"bowl_ovr":45,"ovr":77, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"mukul_chowdhary":{"name":"Mukul Chowdhary","role":"Batter","bat_ovr":76,"bowl_ovr":45,"ovr":76, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"karun_nair":{"name":"Karun Nair","role":"Batter","bat_ovr":82,"bowl_ovr":45,"ovr":82, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"shubam_dubey":{"name":"Shubam Dubey","role":"Batter","bat_ovr":75,"bowl_ovr":45,"ovr":76, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Finisher", "category": "N"},
+"brandon_king":{"name":"Brandon King","role":"Batter","bat_ovr":81,"bowl_ovr":45,"ovr":80, "price": "", "country": "WI", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+
+
+"jasprit_bumrah":{"name":"Jasprit Bumrah","role":"Bowler","bat_ovr":35,"bowl_ovr":95,"ovr":95, "price": "", "country": "IND", "type": "fast", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "N"},
+"matt_henry":{"name":"Matt Henry","role":"Bowler","bat_ovr":39,"bowl_ovr":89,"ovr":90, "price": "", "country": "NZ", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"pat_cummins":{"name":"Pat Cummins","role":"Bowler","bat_ovr":70,"bowl_ovr":93,"ovr":93, "price": "", "country": "AUS", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"mitchell_starc":{"name":"Mitchell Starc","role":"Bowler","bat_ovr":65,"bowl_ovr":94,"ovr":94, "price": "", "country": "AUS", "type": "fast", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "N"},
+"kagiso_rabada":{"name":"Kagiso Rabada","role":"Bowler","bat_ovr":58,"bowl_ovr":93,"ovr":93, "price": "", "country": "SA", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"josh_hazlewood":{"name":"Josh Hazlewood","role":"Bowler","bat_ovr":36,"bowl_ovr":93,"ovr":93, "price": "", "country": "AUS", "type": "fast_med", "bowl_trait": "Economical", "bat_trait": "", "category": "N"},
+"adam_zampa":{"name":"Adam Zampa","role":"Bowler","bat_ovr":32,"bowl_ovr":91,"ovr":91, "price": "", "country": "AUS", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"mohammed_siraj":{"name":"Mohammed Siraj","role":"Bowler","bat_ovr":45,"bowl_ovr":89,"ovr":89, "price": "", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"adil_rashid":{"name":"Adil Rashid","role":"Bowler","bat_ovr":44,"bowl_ovr":89,"ovr":89, "price": "", "country": "ENG", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"kuldeep_yadav":{"name":"Kuldeep Yadav","role":"Bowler","bat_ovr":49,"bowl_ovr":89,"ovr":89, "price": "", "country": "IND", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"arshdeep_singh":{"name":"Arshdeep Singh","role":"Bowler","bat_ovr":43,"bowl_ovr":87,"ovr":87, "price": "", "country": "IND", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"mohammed_shami":{"name":"Mohammed Shami","role":"Bowler","bat_ovr":52,"bowl_ovr":88,"ovr":88, "price": "", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"shaheen_afridi":{"name":"Shaheen Afridi","role":"Bowler","bat_ovr":67,"bowl_ovr":87,"ovr":88, "price": "", "country": "PAK", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"varun_chakravarthy":{"name":"V Chakaravarthy","role":"Bowler","bat_ovr":31,"bowl_ovr":86,"ovr":86, "price": "", "country": "IND", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"haris_rauf":{"name":"Haris Rauf","role":"Bowler","bat_ovr":36,"bowl_ovr":86,"ovr":86, "price": "", "country": "PAK", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"lungi_ngidi":{"name":"Lungi Ngidi","role":"Bowler","bat_ovr":35,"bowl_ovr":86,"ovr":86, "price": "", "country": "SA", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"mukesh_choudhary":{"name":"M Choudhary","role":"Bowler","bat_ovr":34,"bowl_ovr":76,"ovr":75,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"chetan_sakariya":{"name":"Chetan Sakariya","role":"Bowler","bat_ovr":36,"bowl_ovr":76,"ovr":75,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"tushar_deshpande":{"name":"T Deshpande","role":"Bowler","bat_ovr":57,"bowl_ovr":79,"ovr":80,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"kartik_tyagi":{"name":"Kartik Tyagi","role":"Bowler","bat_ovr":33,"bowl_ovr":77,"ovr":75,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"mohsin_khan":{"name":"Mohsin Khan","role":"Bowler","bat_ovr":34,"bowl_ovr":76,"ovr":75,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"kuldeep_sen":{"name":"Kuldeep Sen","role":"Bowler","bat_ovr":34,"bowl_ovr":77,"ovr":75,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"digvesh_rathi":{"name":"Digvesh Rathi","role":"Bowler","bat_ovr":33,"bowl_ovr":79,"ovr":78,"price":"", "country": "IND", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"navdeep_saini":{"name":"Navdeep Saini","role":"Bowler","bat_ovr":36,"bowl_ovr":75,"ovr":75,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"mohit_sharma":{"name":"Mohit Sharma","role":"Bowler","bat_ovr":37,"bowl_ovr":75,"ovr":75,"price":"", "country": "IND", "type": "fast_med", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "N"},
+"sandeep_warrier":{"name":"Sandeep Warrier","role":"Bowler","bat_ovr":34,"bowl_ovr":76,"ovr":75,"price":"", "country": "IND", "type": "fast_med", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"basant_reddy":{"name":"Basant Reddy","role":"Bowler","bat_ovr":32,"bowl_ovr":77,"ovr":75,"price":"", "country": "IND", "type": "fast_med", "bowl_trait": "Wicket Taker`", "bat_trait": "", "category": "N"},
+"mayank_markande":{"name":"Mayank Markande","role":"Bowler","bat_ovr":35,"bowl_ovr":77,"ovr":77,"price": "", "country": "IND", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"mohd_wasim_jr":{"name":"Mohd Wasim Jr","role":"Bowler","bat_ovr":45,"bowl_ovr":78,"ovr":79,"price": "", "country": "PAK", "type": "fast", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "N"},
+"jacob_duffy":{"name":"Jacob Duffy","role":"Bowler","bat_ovr":41,"bowl_ovr":82,"ovr":82,"price": "", "country": "NZ", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"david_payne":{"name":"David Payne","role":"Bowler","bat_ovr":56,"bowl_ovr":83,"ovr":82,"price": "", "country": "ENG", "type": "fast_med", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "N"},
+"blessing_muzarabani":{"name":"B Muzarabani","role":"Bowler","bat_ovr":46,"bowl_ovr":84,"ovr":83,"price": "", "country": "ZIM", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"nandre_burger":{"name":"Nandre Burger","role":"Bowler","bat_ovr":46,"bowl_ovr":80,"ovr":80,"price": "", "country": "SA", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"sandeep_sharma":{"name":"Sandeep Sharma","role":"Bowler","bat_ovr":34,"bowl_ovr":82,"ovr":82,"price":"", "country": "IND", "type": "fast_med", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "N"},
+"noor_ahmad":{"name":"Noor Ahmad","role":"Bowler","bat_ovr":53,"bowl_ovr":84,"ovr":83,"price": "", "country": "AFG", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"ravi_bishnoi":{"name":"Ravi Bishnoi","role":"Bowler","bat_ovr":41,"bowl_ovr":82,"ovr":83,"price":"", "country": "IND", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"vaibhav_arora":{"name":"Vaibhav Arora","role":"Bowler","bat_ovr":34,"bowl_ovr":75,"ovr":75,"price":"", "country": "IND", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"khaleel_ahmed":{"name":"Khaleel Ahmed","role":"Bowler","bat_ovr":34,"bowl_ovr":82,"ovr":82,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"vijaykumar_vyshak":{"name":"Vijay Vyshak","role":"Bowler","bat_ovr":34,"bowl_ovr":79,"ovr":78,"price":"", "country": "IND", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"prasidh_krishna":{"name":"Prasidh Krishna","role":"Bowler","bat_ovr":34,"bowl_ovr":83,"ovr":83,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"Xavier_Bartlett":{"name":"Xavier Bartlett","role":"Bowler","bat_ovr":64,"bowl_ovr":80,"ovr":80,"price":"", "country": "AUS", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"thangarasu_natarajan":{"name":"T Natarajan","role":"Bowler","bat_ovr":34,"bowl_ovr":82,"ovr":82,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "N"},
+"anrich_nortje":{"name":"Anrich Nortje","role":"Bowler","bat_ovr":39,"bowl_ovr":86,"ovr":86,"price":"", "country": "SA", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"prince_yadav":{"name":"Prince Yadav","role":"Bowler","bat_ovr":41,"bowl_ovr":75,"ovr":75,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"mukesh_kumar":{"name":"Mukesh Kumar","role":"Bowler","bat_ovr":34,"bowl_ovr":80,"ovr":80,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "N"},
+"jayadev_unadkat":{"name":"Jayadev Unadkat","role":"Bowler","bat_ovr":39,"bowl_ovr":81,"ovr":82,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"rahul_chahar":{"name":"Rahul Chahar","role":"Bowler","bat_ovr":39,"bowl_ovr":79,"ovr":81,"price":"", "country": "IND", "type": "leg", "bowl_trait": "Economical", "bat_trait": "", "category": "N"},
+"yuzvendra_chahal":{"name":"Yuzi Chahal","role":"Bowler","bat_ovr":39,"bowl_ovr":87,"ovr":87,"price":"", "country": "IND", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"akeal_hosein":{"name":"Akeal Hosein","role":"Bowler","bat_ovr":49,"bowl_ovr":81,"ovr":80,"price":"", "country": "WI", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"deepak_chahar":{"name":"Deepak Chahar","role":"Bowler","bat_ovr":59,"bowl_ovr":83,"ovr":82,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"jofra_archer":{"name":"Jofra Archer","role":"Bowler","bat_ovr":59,"bowl_ovr":90,"ovr":90,"price":"", "country": "ENG", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"ashok_sharma":{"name":"Ashok Sharma","role":"Bowler","bat_ovr":39,"bowl_ovr":76,"ovr":76,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"abhinandan_singh":{"name":"Abhinandan Singh","role":"Bowler","bat_ovr":39,"bowl_ovr":75,"ovr":75,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"harshal_patel":{"name":"Harshal Patel","role":"Bowler","bat_ovr":49,"bowl_ovr":83,"ovr":83,"price":"", "country": "IND", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"eshan_malinga":{"name":"Eshan Malinga","role":"Bowler","bat_ovr":39,"bowl_ovr":76,"ovr":76,"price":"", "country": "SL", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"avesh_khan":{"name":"Avesh Khan","role":"Bowler","bat_ovr":37,"bowl_ovr":81,"ovr":80,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"manimaran_siddharth":{"name":"M Siddharth","role":"Bowler","bat_ovr":35,"bowl_ovr":75,"ovr":75,"price":"", "country": "IND", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"suyash_sharma":{"name":"Suyash Sharma","role":"Bowler","bat_ovr":38,"bowl_ovr":77,"ovr":77,"price":"", "country": "IND", "type": "off", "bowl_trait": "Economical", "bat_trait": "", "category": "N"},
+"akash_deep":{"name":"Akash Deep","role":"Bowler","bat_ovr":48,"bowl_ovr":79,"ovr":80,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"suyash_sharma":{"name":"Suyash Sharma","role":"Bowler","bat_ovr":38,"bowl_ovr":77,"ovr":77,"price":"", "country": "IND", "type": "off", "bowl_trait": "Economical", "bat_trait": "", "category": "N"},
+"harshit_rana":{"name":"Harshit Rana","role":"Bowler","bat_ovr":62,"bowl_ovr":81,"ovr":82,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "N"},
+"naseem_shah":{"name":"Naseem Shah","role":"Bowler","bat_ovr":42,"bowl_ovr":84,"ovr":84,"price":"", "country": "PAK", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+"praful_hinge":{"name":"Praful Hinge","role":"Bowler","bat_ovr":42,"bowl_ovr":80,"ovr":80,"price":"", "country": "IND", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "N"},
+
+
+"rashid_khan":{"name":"Rashid Khan","role":"Allrounder","bat_ovr":84,"bowl_ovr":92,"ovr":94, "price": "", "country": "AFG", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"ben_stokes":{"name":"Ben Stokes","role":"Allrounder","bat_ovr":92,"bowl_ovr":90,"ovr":94, "price": "", "country": "ENG", "type": "fast_med", "bowl_trait": "Economical", "bat_trait": "Balanced", "category": "N"},
+"marco_jansen":{"name":"Marco Jansen","role":"Allrounder","bat_ovr":85,"bowl_ovr":90,"ovr":93, "price": "", "country": "SA", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "Hitter", "category": "N"},
+"hardik_pandya":{"name":"Hardik Pandya","role":"Allrounder","bat_ovr":90,"bowl_ovr":87,"ovr":92, "price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Hitter", "category": "N"},
+"mitchell_santner":{"name":"Mitchell Santner","role":"Allrounder","bat_ovr":84,"bowl_ovr":88,"ovr":89, "price": "", "country": "NZ", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"glenn_phillips":{"name":"Glenn Phillips","role":"Allrounder","bat_ovr":86,"bowl_ovr":79,"ovr":88, "price": "", "country": "NZ", "type": "off", "bowl_trait": "Part time", "bat_trait": "Hitter", "category": "N"},
+"jason_holder":{"name":"Jason Holder","role":"Allrounder","bat_ovr":84,"bowl_ovr":87,"ovr":88, "price": "", "country": "WI", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"wanindu_hasaranga":{"name":"W Hasaranga","role":"Allrounder","bat_ovr":77,"bowl_ovr":87,"ovr":87, "price": "", "country": "SL", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"krunal_pandya":{"name":"Krunal Pandya","role":"Allrounder","bat_ovr":83,"bowl_ovr":84,"ovr":83, "price": "", "country": "IND", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Balanced", "category": "N"},
+"roston_chase":{"name":"Roston Chase","role":"Allrounder","bat_ovr":84,"bowl_ovr":81,"ovr":84, "price": "", "country": "WI", "type": "off", "bowl_trait": "Part time", "bat_trait": "Balanced", "category": "N"},
+"romario_shepherd":{"name":"Romario Shepherd","role":"Allrounder","bat_ovr":84,"bowl_ovr":81,"ovr":83, "price": "", "country": "WI", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"mohammad_nabi":{"name":"Mohammad Nabi","role":"Allrounder","bat_ovr":83,"bowl_ovr":85,"ovr":87, "price": "", "country": "AFG", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"james_neesham":{"name":"James Neesham","role":"Allrounder","bat_ovr":85,"bowl_ovr":84,"ovr":87, "price": "", "country": "NZ", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"dasun_shanaka":{"name":"Dasun Shanaka","role":"Allrounder","bat_ovr":86,"bowl_ovr":80,"ovr":87, "price": "", "country": "SL", "type": "fast_med", "bowl_trait": "Part time", "bat_trait": "Finisher", "category": "N"},
+"washington_sundar":{"name":"Washi Sundar","role":"Allrounder","bat_ovr":83,"bowl_ovr":83,"ovr":85, "price": "", "country": "IND", "type": "off", "bowl_trait": "Economical", "bat_trait": "Balanced", "category": "N"},
+"liam_livingstone":{"name":"Liam Livingstone","role":"Allrounder","bat_ovr":87,"bowl_ovr":79,"ovr":86, "price": "", "country": "ENG", "type": "off", "bowl_trait": "Part time", "bat_trait": "Hitter", "category": "N"},
+"mohammad_nawaz":{"name":"Mohammad Nawaz","role":"Allrounder","bat_ovr":79,"bowl_ovr":84,"ovr":83, "price": "", "country": "PAK", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Anchor", "category": "N"},
+"faheem_ashraf":{"name":"Faheem Ashraf","role":"Allrounder","bat_ovr":79,"bowl_ovr":83,"ovr":82, "price": "", "country": "PAK", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"saim_ayub":{"name":"Saim Ayub","role":"Allrounder","bat_ovr":79,"bowl_ovr":81,"ovr":82, "price": "", "country": "PAK", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Balanced", "category": "N"},
+"dwaine_pretorius":{"name":"Dwaine Pretorius","role":"Allrounder","bat_ovr":77,"bowl_ovr":82,"ovr":82, "price": "", "country": "SA", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"anukul_roy":{"name":"Anukul Roy","role":"Allrounder","bat_ovr":72,"bowl_ovr":79,"ovr":79, "price": "", "country": "IND", "type": "off", "bowl_trait": "Economical", "bat_trait": "Balanced", "category": "N"},
+"shams_mulani":{"name":"Shams Mulani","role":"Allrounder","bat_ovr":74,"bowl_ovr":76,"ovr":75,"price": "", "country": "IND", "type": "off", "bowl_trait": "Part time", "bat_trait": "Anchor", "category": "N"},
+"tanush_kotian":{"name":"Tanush Kotian","role":"Allrounder","bat_ovr":75,"bowl_ovr":75,"ovr":75,"price": "", "country": "IND", "type": "off", "bowl_trait": "", "bat_trait": "", "category": "N"},
+"nishant_sindhu":{"name":"Nishant Sindhu","role":"Allrounder","bat_ovr":76,"bowl_ovr":74,"ovr":75,"price": "", "country": "IND", "type": "off", "bowl_trait": "Economical", "bat_trait": "Anchor", "category": "N"},
+"r_hangargekar":{"name":"R Hangargekar","role":"Allrounder","bat_ovr":74,"bowl_ovr":76,"ovr":75,"price": "", "country": "IND", "type": "fast", "bowl_trait": "Economical", "bat_trait": "Anchor", "category": "N"},
+"baba_aparajith":{"name":"Baba Aparajith","role":"Allrounder","bat_ovr":76,"bowl_ovr":73,"ovr":75,"price": "", "country": "IND", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Balanced", "category": "N"},
+"Vipraj_nigam":{"name":"Vipraj Nigam","role":"Allrounder","bat_ovr":74,"bowl_ovr":77,"ovr":78,"price": "", "country": "IND", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Hitter", "category": "N"},
+"vivek_singh":{"name":"Vivek Singh","role":"Allrounder","bat_ovr":74,"bowl_ovr":75,"ovr":75,"price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Part time", "bat_trait": "Finisher", "category": "N"},
+"arjun_tendulkar":{"name":"Arjun Tendulkar","role":"Allrounder","bat_ovr":73,"bowl_ovr":76,"ovr":75,"price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Part time", "bat_trait": "Finisher", "category": "N"},
+"Aquib Nabi":{"name":"Aquib Nabi","role":"Allrounder","bat_ovr":66,"bowl_ovr":77,"ovr":75,"price": "", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"mohit_averma":{"name":"Mohit Ahlawat","role":"Allrounder","bat_ovr":75,"bowl_ovr":73,"ovr":75,"price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Economical", "bat_trait": "Anchor", "category": "N"},
+"swapnil_singh":{"name":"Swapnil Singh","role":"Allrounder","bat_ovr":74,"bowl_ovr":76,"ovr":75,"price": "", "country": "IND", "type": "off", "bowl_trait": "Part time", "bat_trait": "Balanced", "category": "N"},
+"darshan_nalkande":{"name":"Darshan Nalkande","role":"Allrounder","bat_ovr":73,"bowl_ovr":76,"ovr":75,"price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"aman_khan":{"name":"Aman Khan","role":"Allrounder","bat_ovr":75,"bowl_ovr":74,"ovr":75,"price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Part time", "bat_trait": "Hitter", "category": "N"},
+"yudhvir_charak":{"name":"Yudhvir Singh Charak","role":"Allrounder","bat_ovr":73,"bowl_ovr":76,"ovr":75,"price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Economical", "bat_trait": "Anchor", "category": "N"},
+"maaz_sadaqat":{"name":"Maaz Sadaqat","role":"Allrounder","bat_ovr":79,"bowl_ovr":74,"ovr":78,"price": "", "country": "PAK", "type": "off", "bowl_trait": "Economical", "bat_trait": "Balanced", "category": "N"},
+"nitish_reddy":{"name":"Nitish Reddy","role":"Allrounder","bat_ovr":79,"bowl_ovr":79,"ovr":81, "price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Economical", "bat_trait": "Balanced", "category": "N"},
+"shardul_thakur":{"name":"Shardul Thakur","role":"Allrounder","bat_ovr":79,"bowl_ovr":84,"ovr":84, "price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"jamie_overton":{"name":"Jamie Overton","role":"Allrounder","bat_ovr":79,"bowl_ovr":80,"ovr":80, "price": "", "country": "ENG", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"anshul_kamboj":{"name":"Anshul Kamboj","role":"Allrounder","bat_ovr":67,"bowl_ovr":77,"ovr":76,"price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Anchor", "category": "N"},
+"cooper_connolly":{"name":"Cooper Connolly","role":"Allrounder","bat_ovr":82,"bowl_ovr":79,"ovr":81, "price": "", "country": "AUS", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Balanced", "category": "N"},
+"marcus_stonis":{"name":"Marcus Stoinis","role":"Allrounder","bat_ovr":87,"bowl_ovr":83,"ovr":88, "price": "", "country": "AUS", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Hitter", "category": "N"},
+"harsh_dubey":{"name":"Harsh Dubey","role":"Allrounder","bat_ovr":70,"bowl_ovr":76,"ovr":76, "price": "", "country": "IND", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Anchor", "category": "N"},
+"cameron_green":{"name":"Cameron Green","role":"Allrounder","bat_ovr":84,"bowl_ovr":80,"ovr":85, "price": "", "country": "AUS", "type": "fast_med", "bowl_trait": "Part time", "bat_trait": "Balanced", "category": "N"},
+"shivam_dube":{"name":"Shivam Dube","role":"Allrounder","bat_ovr":86,"bowl_ovr":80,"ovr":87, "price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Part time", "bat_trait": "Hitter", "category": "N"},
+"corbin_bosch":{"name":"Corbin Bosch","role":"Allrounder","bat_ovr":77,"bowl_ovr":79,"ovr":80, "price": "", "country": "SA", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "N"},
+"axar_patel":{"name":"Axar Patel","role":"Allrounder","bat_ovr":83,"bowl_ovr":87,"ovr":88, "price": "", "country": "IND", "type": "off", "bowl_trait": "Economical", "bat_trait": "Balanced", "category": "N"},
+"donovan_ferreira":{"name":"Donovan Ferreira","role":"Allrounder","bat_ovr":81,"bowl_ovr":75,"ovr":80, "price": "", "country": "SA", "type": "off", "bowl_trait": "Part time", "bat_trait": "Finisher", "category": "N"},
+"riyan_parag":{"name":"Riyan Parag","role":"Allrounder","bat_ovr":81,"bowl_ovr":80,"ovr":80, "price": "", "country": "IND", "type": "off", "bowl_trait": "Part time", "bat_trait": "Hitter", "category": "N"},
+"shivang_kumar":{"name":"Shivang Kumar","role":"Allrounder","bat_ovr":70,"bowl_ovr":75,"ovr":75, "price": "", "country": "IND", "type": "leg", "bowl_trait": "Economical", "bat_trait": "Finisher", "category": "N"},
+"prashant_veer":{"name":"Prashant Veer","role":"Allrounder","bat_ovr":75,"bowl_ovr":73,"ovr":75, "price": "", "country": "IND", "type": "off", "bowl_trait": "Economical", "bat_trait": "Hitter", "category": "N"},
+"ravindra_jadeja":{"name":"Ravindra Jadeja","role":"Allrounder","bat_ovr":87,"bowl_ovr":92,"ovr":93, "price": "", "country": "IND", "type": "off", "bowl_trait": "Economical", "bat_trait": "Anchor", "category": "N"}, 
+
+
+"jos_buttler":{"name":"Jos Buttler","role":"Wicketkeeper","bat_ovr":92,"bowl_ovr":30,"ovr":92, "price": "", "country": "ENG", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"quinton_de_kock":{"name":"Quinton de Kock","role":"Wicketkeeper","bat_ovr":91,"bowl_ovr":30,"ovr":91, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"devon_conway":{"name":"Devon Conway","role":"Wicketkeeper","bat_ovr":89,"bowl_ovr":30,"ovr":89, "price": "", "country": "NZ", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"kl_rahul":{"name":"Kl Rahul","role":"Wicketkeeper","bat_ovr":91,"bowl_ovr":40,"ovr":90, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"fakhar_zaman":{"name":"Fakhar Zaman","role":"Wicketkeeper","bat_ovr":89,"bowl_ovr":30,"ovr":89, "price": "", "country": "PAK", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"rishabh_pant":{"name":"Rishabh Pant","role":"Wicketkeeper","bat_ovr":89,"bowl_ovr":30,"ovr":89, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"jonny_bairstow":{"name":"Jonny Bairstow","role":"Wicketkeeper","bat_ovr":88,"bowl_ovr":30,"ovr":88, "price": "", "country": "ENG", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"muhammad_rizwan":{"name":"Mohd Rizwan","role":"Wicketkeeper","bat_ovr":88,"bowl_ovr":30,"ovr":88, "price": "", "country": "PAK", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"sanju_samson":{"name":"Sanju Samson","role":"Wicketkeeper","bat_ovr":87,"bowl_ovr":35,"ovr":87, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"tom_latham":{"name":"Tom Latham","role":"Wicketkeeper","bat_ovr":86,"bowl_ovr":30,"ovr":86, "price": "", "country": "NZ", "type": "", "bowl_trait": "", "bat_trait": "Finisher", "category": "N"},
+"rahmanullah_gurbaz":{"name":"R Gurbaz","role":"Wicketkeeper","bat_ovr":86,"bowl_ovr":30,"ovr":86, "price": "", "country": "AFG", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"shai_hope":{"name":"Shai Hope","role":"Wicketkeeper","bat_ovr":86,"bowl_ovr":30,"ovr":86, "price": "", "country": "WI", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"phil_salt":{"name":"Phil Salt","role":"Wicketkeeper","bat_ovr":86,"bowl_ovr":30,"ovr":86, "price": "", "country": "ENG", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"tim_seifert":{"name":"Tim Seifert","role":"Wicketkeeper","bat_ovr":85,"bowl_ovr":30,"ovr":85, "price": "", "country": "NZ", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"ishan_kishan":{"name":"Ishan Kishan","role":"Wicketkeeper","bat_ovr":85,"bowl_ovr":30,"ovr":85, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"finn_allen":{"name":"Finn Allen","role":"Wicketkeeper","bat_ovr":84,"bowl_ovr":30,"ovr":84, "price": "", "country": "NZ", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"josh_philippe":{"name":"Josh Philippe","role":"Wicketkeeper","bat_ovr":84,"bowl_ovr":30,"ovr":84, "price": "", "country": "AUS", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"sam_billings":{"name":"Sam Billings","role":"Wicketkeeper","bat_ovr":83,"bowl_ovr":30,"ovr":83, "price": "", "country": "ENG", "type": "", "bowl_trait": "", "bat_trait": "Finisher", "category": "N"},
+"kusal_perera":{"name":"Kusal Perera","role":"Wicketkeeper","bat_ovr":83,"bowl_ovr":30,"ovr":83, "price": "", "country": "SL", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"dhruv_jurel":{"name":"Dhruv Jurel","role":"Wicketkeeper","bat_ovr":83,"bowl_ovr":30,"ovr":82, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"prabhsimran_singh":{"name":"Prabhsimran S","role":"Wicketkeeper","bat_ovr":79,"bowl_ovr":30,"ovr":80, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"ks_bharat":{"name":"KS Bharat","role":"Wicketkeeper","bat_ovr":81,"bowl_ovr":30,"ovr":81, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Anchor", "category": "N"},
+"narayan_jagadeesan":{"name":"Narayan Jagadeesan","role":"Wicketkeeper","bat_ovr":76,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"urvil_patel":{"name":"Urvil Patel","role":"Wicketkeeper","bat_ovr":75,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"harvik_desai":{"name":"Harvik Desai","role":"Wicketkeeper","bat_ovr":74,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"vansh_bedi":{"name":"Vansh Bedi","role":"Wicketkeeper","bat_ovr":75,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"sumit_kumar":{"name":"Sumit Kumar","role":"Wicketkeeper","bat_ovr":74,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"l_r_chethan":{"name":"L R Chethan","role":"Wicketkeeper","bat_ovr":75,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"vikram_solanki_jr":{"name":"V Solanki Jr","role":"Wicketkeeper","bat_ovr":73,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"abhishek_porel":{"name":"Abhishek Porel","role":"Wicketkeeper","bat_ovr":76,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"pradosh_paul":{"name":"Pradosh Paul","role":"Wicketkeeper","bat_ovr":74,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"shashwat_rawat":{"name":"Shashwat Rawat","role":"Wicketkeeper","bat_ovr":74,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"rishabh_raj":{"name":"Rishabh Raj","role":"Wicketkeeper","bat_ovr":73,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"arjun_rawat":{"name":"Arjun Rawat","role":"Wicketkeeper","bat_ovr":75,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"yash_dubey":{"name":"Yash Dubey","role":"Wicketkeeper","bat_ovr":74,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"nandan_yadav":{"name":"Nandan Yadav","role":"Wicketkeeper","bat_ovr":73,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"akshay_wadkar":{"name":"Akshay Wadkar","role":"Wicketkeeper","bat_ovr":75,"bowl_ovr":20,"ovr":75,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"ryan_rickelton":{"name":"Ryan Rickelton","role":"Wicketkeeper","bat_ovr":84,"bowl_ovr":34,"ovr":84,"price":"", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "N"},
+"tristan_stubbs":{"name":"Tristan Stubbs","role":"Wicketkeeper","bat_ovr":83,"bowl_ovr":44,"ovr":83,"price":"", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+"kumar_kushagra":{"name":"Kumar Kushagra","role":"Wicketkeeper","bat_ovr":79,"bowl_ovr":44,"ovr":78,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "N"},
+"jitesh_sharma":{"name":"Jitesh Sharma","role":"Wicketkeeper","bat_ovr":81,"bowl_ovr":44,"ovr":81,"price":"", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "N"},
+
+#SPECIAL CARDS
+
+"david_warner_S":{"name":"David Warner","role":"Batter","bat_ovr":97,"bowl_ovr":43,"ovr":97, "price": "", "country": "AUS", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "S", "image": "templates/IPL Legends/david_warner_S.png"},
+"bhuvaneshwar_kumar_S":{"name":"Bhuvneshwar Kumar","role":"Bowler","bat_ovr":47,"bowl_ovr":97,"ovr":97, "price": "", "country": "IND", "type": "fast", "bowl_trait": "Swing Bowler", "bat_trait": "", "category": "S", "image": "templates/IPL Legends/bhuvaneshwar_kumar_S.png"},
+"ab_de_villiers_S":{"name":"AB de Villiers","role":"Wicketkeeper","bat_ovr":96,"bowl_ovr":37,"ovr":97, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "S", "image": "templates/IPL Legends/ab_de_villiers_S.png"},
+"dwayne_bravo_S":{"name":"Dwayne Bravo","role":"Allrounder","bat_ovr":87,"bowl_ovr":96,"ovr":97, "price": "", "country": "WI", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "S", "image": "templates/IPL Legends/dj_bravo_S.png"},
+"lasith_malinga_S":{"name":"Lasith Malinga","role":"Bowler","bat_ovr":36,"bowl_ovr":96,"ovr":95, "price": "", "country": "SL", "type": "fast", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "S", "image": "templates/IPL Legends/lasith_malinga_S.png"},
+"chris_gayle_S":{"name":"Chris Gayle","role":"Batter","bat_ovr":95,"bowl_ovr":75,"ovr":96, "price": "", "country": "WI", "type": "", "bowl_trait": "Part time", "bat_trait": "Opener", "category": "S", "image": "templates/IPL Legends/chris_gayle_S.png"},
+"suresh_raina_S":{"name":"Suresh Raina","role":"Batter","bat_ovr":95,"bowl_ovr":47,"ovr":95, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "S", "image": "templates/IPL Legends/suresh_raina_S.png"},
+"piyush_chawla_S":{"name":"Piyush Chawla","role":"Bowler","bat_ovr":49,"bowl_ovr":94,"ovr":94, "price": "", "country": "IND", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/IPL Legends/piyush_chawla_S.png"},
+"shane_watson_S":{"name":"Shane Watson","role":"Allrounder","bat_ovr":93,"bowl_ovr":91,"ovr":95, "price": "", "country": "AUS", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "Opener", "category": "S", "image": "templates/IPL Legends/shane_watson_S.png"},
+"shikar_dhawan_S":{"name":"Shikar Dhawan","role":"Batter","bat_ovr":94,"bowl_ovr":37,"ovr":94, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "S", "image": "templates/IPL Legends/shikar_dhawan_S.png"},
+"shane_warne_S":{"name":"Shane Warne","role":"Bowler","bat_ovr":41,"bowl_ovr":93,"ovr":94, "price": "", "country": "AUS", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/IPL Legends/shane_warne_S.png"},
+"ravi_ashwin_S":{"name":"Ravi Ashwin","role":"Allrounder","bat_ovr":81,"bowl_ovr":94,"ovr":95, "price": "", "country": "IND", "type": "off", "bowl_trait": "Economical", "bat_trait": "Anchor", "category": "S", "image": "templates/IPL Legends/ravi_ashwin_S.png"},
+"sunil_narine_S":{"name":"Sunil Narine","role":"Allrounder","bat_ovr":89,"bowl_ovr":93,"ovr":95, "price": "", "country": "WI", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Opener", "category": "S", "image": "templates/IPL Legends/sunil_narine_S.png"},
+"kieron_pollard_S":{"name":"Kieron Pollard","role":"Allrounder","bat_ovr":94,"bowl_ovr":83,"ovr":94, "price": "", "country": "WI", "type": "fast_med", "bowl_trait": "Part time", "bat_trait": "Finisher", "category": "S", "image": "templates/IPL Legends/kieron_pollard_S.png"},
+"ms_dhoni_S":{"name":"MS Dhoni","role":"Wicketkeeper","bat_ovr":96,"bowl_ovr":37,"ovr":97, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "S", "image": "templates/IPL Legends/ms_dhoni_S.png"},
+
+# WPL 2026 Cards
+
+"harmanpreet_kaur_S":{"name":"Harmanpreet Kaur","role":"Batter","bat_ovr":94,"bowl_ovr":40,"ovr":94, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "S", "image": "templates/WPL cards/harmanpreet_kaur_S.png"},
+"lizelle_lee_S":{"name":"Lizelle Lee","role":"Wicketkeeper","bat_ovr":92,"bowl_ovr":35,"ovr":92, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "S", "image": "templates/WPL cards/lizelle_lee_S.png"},
+"shree_charani_S":{"name":"Shree Charani","role":"Bowler","bat_ovr":38,"bowl_ovr":93,"ovr":92, "price": "", "country": "IND", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/WPL cards/nallapureddy_shree_charani_S.png"},
+"nadine_de_klerk_S":{"name":"Nadine de Klerk","role":"Allrounder","bat_ovr":88,"bowl_ovr":93,"ovr":93, "price": "", "country": "SA", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Finisher", "category": "S", "image": "templates/WPL cards/nadine_de_klerk_S.png"},
+"jemimah_rodrigues_S":{"name":"Jemimah Rodrigues","role":"Batter","bat_ovr":90,"bowl_ovr":42,"ovr":91, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "S", "image": "templates/WPL cards/jemimah_rodrigues_S.png"},
+"lauren_bell_S":{"name":"Lauren Bell","role":"Bowler","bat_ovr":35,"bowl_ovr":94,"ovr":94, "price": "", "country": "ENG", "type": "", "bowl_trait": "Economical", "bat_trait": "", "category": "S", "image": "templates/WPL cards/lauren_bell_S.png"},
+"nandini_sharma_S":{"name":"Nandini Sharma","role":"Bowler","bat_ovr":33,"bowl_ovr":94,"ovr":94, "price": "", "country": "IND", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/WPL cards/nandini_sharma_S.png"},
+"nat_sciver_brunt_S":{"name":"Nat Sciver","role":"Allrounder","bat_ovr":94,"bowl_ovr":86,"ovr":93, "price": "", "country": "ENG", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "Balanced", "category": "S", "image": "templates/WPL cards/nat_sciver_brunt_S.png"},
+"richa_ghosh_S":{"name":"Richa_Ghosh","role":"Wicketkeeper","bat_ovr":89,"bowl_ovr":39,"ovr":88, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "S", "image": "templates/WPL cards/richa_ghosh_S.png"},
+"shreyanka_patil_S":{"name":"Shreyanka Patil","role":"Bowler","bat_ovr":52,"bowl_ovr":89,"ovr":88, "price": "", "country": "IND", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/WPL cards/shreyanka_patil_S.png"},
+"smriti_mandhana_S":{"name":"Smriti Mandhana","role":"Batter","bat_ovr":95,"bowl_ovr":37,"ovr":95, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "S", "image": "templates/WPL cards/smriti_mandhana_S.png"},
+"sophie_devine_S":{"name":"Sophie Devine","role":"Allrounder","bat_ovr":89,"bowl_ovr":94,"ovr":95, "price": "", "country": "NZ", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "Balanced", "category": "S", "image": "templates/WPL cards/sophie_devine_S.png"},
+
+# T20 WC Cards
+"finn_allen_S":{"name":"Finn Allen","role":"Batter","bat_ovr":92,"bowl_ovr":38,"ovr":91, "price": "", "country": "NZ", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "S", "image": "templates/T20WC cards/finn_allen_S.png"},
+"sahibzada_farhan_S":{"name":"Sahibzada Farhan","role":"Batter","bat_ovr":94,"bowl_ovr":36,"ovr":95, "price": "", "country": "PAK", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "S", "image": "templates/T20WC cards/sahibzada_farhan_S.png"},
+"ishan_kishan_S":{"name":"Ishan Kishan","role":"Wicketkeeper","bat_ovr":94,"bowl_ovr":36,"ovr":93, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "S", "image": "templates/T20WC cards/ishan_kishan_S.png"},
+"sanju_samson_S":{"name":"Sanju Samson","role":"Wicketkeeper","bat_ovr":95,"bowl_ovr":38,"ovr":94, "price": "", "country": "IND", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "S", "image": "templates/T20WC cards/sanju_samson_S.png"},
+"tim_seifert_S":{"name":"Tim Seifert","role":"Wicketkeeper","bat_ovr":93,"bowl_ovr":36,"ovr":92, "price": "", "country": "NZ", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "S", "image": "templates/T20WC cards/tim_seifert_S.png"},
+"shivam_dube_S":{"name":"Shivam Dube","role":"Allrounder","bat_ovr":93,"bowl_ovr":86,"ovr":93, "price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Part time", "bat_trait": "Finisher", "category": "S", "image": "templates/T20WC cards/shivam_dube_S.png"},
+"hardik_pandya_S":{"name":"Hardik Pandya","role":"Allrounder","bat_ovr":92,"bowl_ovr":89,"ovr":93, "price": "", "country": "IND", "type": "fast_med", "bowl_trait": "Wicket Taker", "bat_trait": "Hitter", "category": "S", "image": "templates/T20WC cards/hardik_pandya_S.png"},
+"will_jacks_S":{"name":"Will Jacks","role":"Allrounder","bat_ovr":89,"bowl_ovr":93,"ovr":94, "price": "", "country": "ENG", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Balanced", "category": "S", "image": "templates/T20WC cards/will_jacks_S.png"},
+"lungi_ngidi_S":{"name":"Lungi Ngidi","role":"Bowler","bat_ovr":42,"bowl_ovr":92,"ovr":92, "price": "", "country": "SA", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/T20WC cards/lungi_ngidi_S.png"},
+"blessing_muzarabani_S":{"name":"Blessing Muzarabani","role":"Bowler","bat_ovr":42,"bowl_ovr":94,"ovr":93, "price": "", "country": "ZIM", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/T20WC cards/blessing_muzarabani_S.png"},
+"adil_rashid_S":{"name":"Adil Rashid","role":"Bowler","bat_ovr":40,"bowl_ovr":93,"ovr":93, "price": "", "country": "ENG", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/T20WC cards/adil_rashid_S.png"},
+"varun_chakravarthy_S":{"name":"V Chakaravarthy","role":"Bowler","bat_ovr":36,"bowl_ovr":92,"ovr":91, "price": "", "country": "IND", "type": "leg", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/T20WC cards/varun_chakravarthy_S.png"},
+"jasprit_bumrah_S":{"name":"Jasprit Bumrah","role":"Bowler","bat_ovr":40,"bowl_ovr":96,"ovr":96, "price": "", "country": "IND", "type": "fast", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "S", "image": "templates/T20WC cards/jasprit_bumrah_S.png"},
+
+# SA20 Cards
+"quinton_de_kock_S":{"name":"Quinton de Kock","role":"Wicketkeeper","bat_ovr":95,"bowl_ovr":36,"ovr":95, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "S", "image": "templates/SA20 cards/quinton_de_kock_S.png"},
+"jonny_bairstow_S":{"name":"Jonny Bairstow","role":"Wicketkeeper","bat_ovr":90,"bowl_ovr":37,"ovr":89, "price": "", "country": "ENG", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "S", "image": "templates/SA20 cards/jonny_bairstow_S.png"},
+"ryan_rickelton_S":{"name":"Ryan Rickelton","role":"Wicketkeeper","bat_ovr":93,"bowl_ovr":38,"ovr":93, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Opener", "category": "S", "image": "templates/SA20 cards/ryan_rickelton_S.png"},
+"dewald_brevis_S":{"name":"Dewald Brevis","role":"Batter","bat_ovr":94,"bowl_ovr":46,"ovr":94, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Hitter", "category": "S", "image": "templates/SA20 cards/dewald_brevis_S.png"},
+"mathew_breetzke_S":{"name":"Mathew Breetzke","role":"Batter","bat_ovr":90,"bowl_ovr":40,"ovr":90, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "S", "image": "templates/SA20 cards/mathew_breetzke_S.png"},
+"aiden_markram_S":{"name":"Aiden Markram","role":"Batter","bat_ovr":90,"bowl_ovr":58,"ovr":91, "price": "", "country": "SA", "type": "", "bowl_trait": "", "bat_trait": "Balanced", "category": "S", "image": "templates/SA20 cards/aiden_markram_S.png"},
+"sherfane_rutherford_S":{"name":"Sherfane Rutherford","role":"Batter","bat_ovr":92,"bowl_ovr":60,"ovr":92, "price": "", "country": "WI", "type": "", "bowl_trait": "", "bat_trait": "Finisher", "category": "S", "image": "templates/SA20 cards/sherfane_rutherford_S.png"},
+"sikandar_raza_S":{"name":"Sikandar Raza","role":"Allrounder","bat_ovr":86,"bowl_ovr":90,"ovr":92, "price": "", "country": "ZIM", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "Balanced", "category": "S", "image": "templates/SA20 cards/sikandar_raza_S.png"},
+"marco_jansen_S":{"name":"Marco Jansen","role":"Allrounder","bat_ovr":84,"bowl_ovr":94,"ovr":93, "price": "", "country": "SA", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "Anchor", "category": "S", "image": "templates/SA20 cards/marco_jansen_S.png"},
+"anrich_nortje_S":{"name":"Anrich Nortje","role":"Bowler","bat_ovr":36,"bowl_ovr":95,"ovr":95, "price": "", "country": "SA", "type": "fast", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/SA20 cards/anrich_nortje_S.png"},
+"ottniel_baartman_S":{"name":"Ottniel Baartman","role":"Bowler","bat_ovr":36,"bowl_ovr":93,"ovr":94, "price": "", "country": "SA", "type": "fast", "bowl_trait": "Death Over Specialist", "bat_trait": "", "category": "S", "image": "templates/SA20 cards/ottniel_baartman_S.png"},
+"keshav_maharaj_S":{"name":"Keshav Maharaj","role":"Bowler","bat_ovr":52,"bowl_ovr":90,"ovr":89, "price": "", "country": "SA", "type": "off", "bowl_trait": "Wicket Taker", "bat_trait": "", "category": "S", "image": "templates/SA20 cards/keshav_maharaj_S.png"},
+
+
+}
+
+# Calculate price using the overall rating (ovr) or average of bat/bowl if missing
+for p in players.values():
+    ovr_key = p.get("ovr") or int((p.get("bat_ovr", 0) + p.get("bowl_ovr", 0)) / 2)
+    p["price"] = get_price_by_ovr(ovr_key, p.get("category"))
