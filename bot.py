@@ -4323,4 +4323,4 @@ async def on_message(message):
         await bot.invoke(ctx)
         return
 
-bot.run("MTQ4MDUzNTkxNjAwMjE1MjUwMA.Gdsh84.98Y7An3LZkTWLOscGf-W5Z1UxxRKfpy0EEgZLU")
+bot.run("MTQ4MDUzNTkxNjAwMjE1MjUwMA.GzoVBD.ZfxE9owlJ8p-drF6bc_6PErjlnD6HGHAMy_tYs")
